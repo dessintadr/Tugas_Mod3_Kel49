@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { render } from "react-dom";
+
 
 class ProductSatu extends React.Component {
     constructor(props) {
@@ -7,25 +7,38 @@ class ProductSatu extends React.Component {
         this.handleChangeMenu = this.handleChangeMenu.bind(this)
         this.state = {
             minuman: [
-                {
-                    nama: 'vanilla latte',
-                    gambar: 'src="https://cdn.idntimes.com/content-images/community/2021/04/fromandroid-5ad79a4b679f8ede003ddbfb5984f6bf_600x400.jpg"',
-                    harga: 20000
-                }
+                ['Vanilla Latte', 25000],
+                ['Americano', 30000],
+                ['Kopi Susu', 20000],
+                ['Vanilla Latte', 25000],
+                ['Americano', 30000],
+                ['Kopi Susu', 20000],
+                ['Avogato', 30000]
             ],
             menu: {
-                kopi: 0
+                kopi1: 0,
+                kopi2: 0,
+                kopi3: 0,
+                kopi4: 0,
+                kopi5: 0,
+                kopi6: 0,
             },
             hargaTotal: 0
         }
     }
-    handletotalHarga = () => {
+
+    handletotal = () => {
         const {
-            kopi
+            kopi1,
+            kopi2,
+            kopi3,
+            kopi4,
+            kopi5,
+            kopi6
         }
             = this.state.menu
         this.setState({
-            totalHarga: kopi
+            hargaTotal: kopi1 + kopi2 + kopi3 + kopi4 + kopi4 + kopi5 + kopi6
         })
     }
 
@@ -40,47 +53,111 @@ class ProductSatu extends React.Component {
                 ...menu,
                 [name]: Number(value)
             }
-        }, this.handletotalHarga);
+        }, this.handletotal);
     }
-    tambahMinuman = () => {
-        this.setState((state) => {
-            return { minuman: state.minum + 1 }
-        })
-    }
+
+
     render() {
         const {
             minuman,
-            totalHarga
+            hargaTotal
         } = this.state
 
         return (
             <>
-                <div className="col-3">
-                    <div className="kopi">
-                        <Fragment>{
-                            minuman.map(minum => {
-                                return (
-                                    <>
+                <div className='tips-container'>
+                    <div style={{ height: '50%' }} className='tips-content'>
+                        <div className='pilih-minuman'>
+                            <div className='minum1'>
+                                <select onChange={this.handleChangeMenu} name='kopi1'>
+                                    <option value='0'> Pilih Minuman</option>
+                                    <Fragment>
+                                        {
+                                            minuman.map(minum => {
+                                                return (
+                                                    <option value={minum[1]}> {minum[0]} </option>
+                                                )
+                                            })
+                                        }
+                                    </Fragment>
+                                </select> <br></br>
+                                <select onChange={this.handleChangeMenu} name='kopi2'>
+                                    <option value='0'> Pilih Minuman</option>
+                                    <Fragment>
+                                        {
+                                            minuman.map(minum => {
+                                                return (
+                                                    <option value={minum[1]}> {minum[0]} </option>
+                                                )
+                                            }
+                                            )
+                                        }
+                                    </Fragment>
+                                </select> <br></br>
+                                <select onChange={this.handleChangeMenu} name='kopi3'>
+                                    <option value='0'> Pilih Minuman</option>
+                                    <Fragment>
+                                        {
+                                            minuman.map(minum => {
+                                                return (
+                                                    <option value={minum[1]}> {minum[0]} </option>
+                                                )
+                                            }
+                                            )
+                                        }
+                                    </Fragment>
+                                </select> <br></br>
+                                <div className='minum2'>
+                                    <select onChange={this.handleChangeMenu} name='kopi4'>
+                                        <option value='0'> Pilih Minuman</option>
+                                        <Fragment>
+                                            {
+                                                minuman.map(minum => {
+                                                    return (
+                                                        <option value={minum[1]}> {minum[0]} </option>
+                                                    )
+                                                }
+                                                )
+                                            }
+                                        </Fragment>
+                                    </select> <br></br>
+                                    <select onChange={this.handleChangeMenu} name='kopi5'>
+                                        <option value='0'> Pilih Minuman</option>
+                                        <Fragment>
+                                            {
+                                                minuman.map(minum => {
+                                                    return (
+                                                        <option value={minum[1]}> {minum[0]} </option>
+                                                    )
+                                                }
+                                                )
+                                            }
+                                        </Fragment>
+                                    </select> <br></br>
+                                    <select onChange={this.handleChangeMenu} name='kopi6'>
+                                        <option value='0'> Pilih Minuman</option>
+                                        <Fragment>
+                                            {
+                                                minuman.map(minum => {
+                                                    return (
+                                                        <option value={minum[1]}> {minum[0]} </option>
+                                                    )
+                                                }
+                                                )
+                                            }
+                                        </Fragment>
+                                    </select> <br></br>
+                                    <h2 style={{ color: '#000', textAlign: 'center', flex: '1 0 100%', margin: '10px 0' }}>Total Harga: <br></br>Rp {hargaTotal} </h2>
+                                </div>
+                            </div>
 
-                                        <img src={minum.gambar} />
-                                        <h3>{minum.nama}</h3>
-                                        <div>{minum.harga}</div>
-                                        <div>
-                                            <button onClick={this.tambahMinuman}>Tambah</button>
-                                            <br />
-                                            <span>{this.state.minuman}</span>
-                                        </div>
-                                    </>
-                                )
-                            })
-                        }
-                        </Fragment>
+                        </div>
 
                     </div>
+
                 </div>
             </>
         )
     }
 }
-
 export default ProductSatu;
