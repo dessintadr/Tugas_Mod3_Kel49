@@ -19,7 +19,6 @@ class Pelanggan extends Component {
             }
         })
     }
-
     render() {
         return (
             <>
